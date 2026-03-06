@@ -57,7 +57,7 @@ function NavbarLink({ active, setActive }: NavbarLinkProps) {
             </Link>
           </li>
           <li>
-            <Link href="/why-us" onClick={handleClose}>
+            <Link href="/whyUs" onClick={handleClose}>
               Why Us?
             </Link>
           </li>

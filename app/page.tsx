@@ -286,7 +286,7 @@ export default function Home() {
                   className="text-xs absolute -top-2 -right-2 font-semibold w-6 h-6 bg-blue-500 text-white 
                 rounded-full flex items-center justify-center"
                 >
-                  2
+                  3
                 </span>
                 <FontAwesomeIcon
                   icon={faWallet}
@@ -307,7 +307,7 @@ export default function Home() {
                   className="text-xs absolute -top-2 -right-2 font-semibold w-6 h-6 bg-blue-500 text-white 
                 rounded-full flex items-center justify-center"
                 >
-                  2
+                  4
                 </span>
                 <FontAwesomeIcon
                   icon={faTruckFast}

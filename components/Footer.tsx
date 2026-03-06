@@ -20,7 +20,7 @@ function Footer() {
             `}
             >
               <li>
-                <Link href="/why-us">Why Us?</Link>
+                <Link href="/whyUs">Why Us?</Link>
               </li>
               <li>
                 <Link href="/services">Services</Link>
