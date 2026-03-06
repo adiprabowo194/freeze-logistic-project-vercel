@@ -12,7 +12,7 @@ function Footer() {
       <div className="container mx-auto px-4 pt-4">
         <div className="flex md:flex-row flex-col items-center justify-between bg-white mx-auto">
           <Logo />
-          <div className="w-full flex md:flex-row flex-col  md:items-center justify-end">
+          <div className="w-full flex md:flex-row flex-col  md:items-center justify-end text-[#0F253C]">
             {/* ================= MENU ================= */}
             <ul
               className={`

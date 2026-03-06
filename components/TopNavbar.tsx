@@ -10,7 +10,7 @@ function Logo() {
       ></i>
 
       <h1
-        className={`md:text-2xl text-base font-bold transition-colors duration-300
+        className={`md:text-2xl text-base font-bold transition-colors duration-300 text-[#0F253C]
         `}
       >
         Freeze Logistics

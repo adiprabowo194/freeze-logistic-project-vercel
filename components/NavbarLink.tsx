@@ -48,7 +48,7 @@ function NavbarLink({ active, setActive }: NavbarLinkProps) {
 
     md:flex md:static md:flex-row md:justify-start
     md:bg-transparent md:w-auto md:py-0
-    md:text-black md:opacity-100 z-50
+    md:text-black md:opacity-100 z-50 text-[#0F253C]
   `}
         >
           <li>
