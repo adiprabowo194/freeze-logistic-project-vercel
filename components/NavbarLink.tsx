@@ -41,7 +41,7 @@ function NavbarLink({ active, setActive }: NavbarLinkProps) {
   const pathname = usePathname();
   const linkClass = (path: string) => {
     return pathname === path
-      ? "text-blue-500 font-bold"
+      ? "md:text-blue-500 text-[#0F253C] font-bold"
       : "text-white md:text-[#0F253C]";
   };
 
@@ -136,13 +136,13 @@ function NavbarLink({ active, setActive }: NavbarLinkProps) {
         >
           <button
             className={`
-          w-full md:w-auto
-          px-4 py-3
-          rounded-2xl
-          transition-all duration-300
-          ${active ? "bg-white text-blue-500 shadow-lg" : "bg-blue-500 text-white"}
-          md:bg-blue-500 md:text-white md:shadow-none hover:bg-[#0F253C]
-        `}
+            w-full md:w-auto
+            px-4 py-3
+            rounded-2xl
+            transition-all duration-300
+            ${active ? "bg-white hover:bg-[#0F253C] text-blue-500 shadow-lg" : "bg-blue-500 text-white"}
+            md:bg-blue-500 [#0F253C] md:text-white md:shadow-none hover:bg-[#0F253C]
+          `}
           >
             Get Started
           </button>

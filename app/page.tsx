@@ -21,7 +21,7 @@ export default function Home() {
       <section className="hero items-center w-full md:py-16 py-8 container mx-auto">
         <div className="hero-row">
           <div className="flex flex-col items-center md:text-center text-left px-2 md:px-8">
-            <div className="flex items-center gap-3 md:py-4 py-2">
+            <div className="flex items-center gap-3 md:py-4 py-6">
               <div className="flex items-center gap-2">
                 <i className="ri-star-s-fill text-amber-300 text-xl"></i>
                 <span className="md:text-base text-sm">4.8</span>
