@@ -20,24 +20,27 @@ import { faPeopleCarryBox } from "@fortawesome/free-solid-svg-icons/faPeopleCarr
 export default function Home() {
   return (
     <div className="py-8">
-      <section className="flex md:flex-row flex-col w-full  py-16 container-full mx-auto ">
-        <div className="box-title md:py-16 py-8 md:min-h-[480px] min-h-[500px] items-center bg-blue-500 w-1/2 relative">
-          <h1 className=" md:text-7xl/tight text-3xl/tight font-bold  text-white  mx-auto absolute bottom-34 left-24">
-            Why Freeze Logistics?
-          </h1>
-          <p className="md:text-base/tight text-[10px] mx-auto text-white  tracking-wider absolute bottom-20 w-3/4 left-24">
-            Experience premium chilled and frozen product distribution with the
-            highest quality standards.
-          </p>
+      <section className="flex md:flex-row flex-col w-full md:h-[480px] h-[520px] container-full mx-auto">
+        <div className="bg-blue-500 md:w-1/2 w-full h-full flex items-center px-6 md:px-16 pt-4 mx-auto">
+          <div className="max-w-xl absolute">
+            <h1 className="md:text-7xl/tight text-3xl/tight font-bold text-white pt-10 md:text-left text-center">
+              Why Freeze Logistics?
+            </h1>
+            <p className="md:text-xl text-xs text-white py-4 md:text-left text-center">
+              Experience premium chilled and frozen product distribution with
+              the highest quality standards.
+            </p>
+          </div>
         </div>
+
         <div
-          className="bg-no-repeat  md:bg-[length:120%] bg-[length:200%] w-1/2"
+          className="md:w-1/2 w-full md:h-[260px] h-[420px] md:h-full bg-cover  bg-no-repeat"
           style={{
             backgroundImage: "url('/assets/truck_freeze_logistics.webp')",
           }}
-        ></div>
+        />
       </section>
-      <section className="AnyTemperature flex flex-col items-center w-full  container mx-auto">
+      <section className="AnyTemperature flex flex-col items-center w-full  container mx-auto py-16">
         <div className="box-content py-2">
           <h1 className="md:text-5xl/tight text-4xl/tight font-bold text-center  px-2 md:px-8">
             <div>End-to-End Solutions for</div>
@@ -52,8 +55,8 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="flex flex-row w-3/4 gap-6 md:gap-8 mx-auto px-6 md:px-16  pb-8 md:pb-16">
-          <div className="md:py-4 py-8 w-1/4">
+        <div className="grid md:flex grid-cols-2 md:flex-row w-3/4">
+          <div className="md:py-4 py-6 md:w-1/4">
             <div className="flex flex-col items-center">
               <i className="ri-truck-line text-3xl text-red-600 bg-red-100 p-2 rounded-xl w-fit"></i>
               <h3 className="font-bold text-gray-600 md:text-lg text-base pt-3 text-center">
@@ -61,7 +64,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="md:py-4 py-8 w-1/4">
+          <div className="md:py-4 py-6 md:w-1/4">
             <div className="flex flex-col items-center">
               <i className="ri-temp-cold-line text-3xl text-blue-400 bg-blue-50 p-2 rounded-xl w-fit"></i>
               <h3 className="font-bold text-gray-600 md:text-lg text-base pt-3 text-center">
@@ -69,7 +72,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="md:py-4 py-8 w-1/4">
+          <div className="md:py-4 py-6 md:w-1/4">
             <div className="flex flex-col items-center">
               <i className="ri-send-ins-fill text-3xl text-green-500 bg-green-100 p-2 rounded-xl w-fit"></i>
               <h3 className="font-bold text-gray-600 md:text-lg text-base pt-3 text-center">
@@ -77,7 +80,7 @@ export default function Home() {
               </h3>
             </div>
           </div>
-          <div className="md:py-4 py-8 w-1/4">
+          <div className="md:py-4 py-6 md:w-1/4">
             <div className="flex flex-col items-center">
               <i className="ri-box-3-line text-3xl text-blue-500 bg-blue-200 p-2 rounded-xl w-fit"></i>
               <h3 className="font-bold text-gray-600 md:text-lg text-base pt-3 text-center">
@@ -87,9 +90,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="AnyTemperature flex flex-col items-center w-full  container mx-auto py-8">
+      <section className="AnyTemperature flex flex-col items-center w-full  container mx-auto py-8 px-2">
         <div className="box-content py-2">
-          <h1 className="md:text-5xl/tight text-4xl/tight font-bold text-center  px-2 md:px-8">
+          <h1 className="md:text-5xl/tight text-3xl/tight font-bold text-center  px-2 md:px-8">
             <div className="bg-[linear-gradient(90deg,#4267D7_32%,#3ACDFF_100%)] bg-clip-text text-transparent">
               Get In Touch With Us
             </div>
@@ -101,7 +104,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-        <div className="w-2/4 grid grid-cols-2 mx-auto gap-4">
+        <div className="w-full md:w-2/4 grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 px-6">
           <div className="pb-4">
             <span className="uppercase text-sm text-gray-600 font-bold">
               Company Name
@@ -163,7 +166,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="w-2/4 grid grid-cols-1 mx-auto gap-4">
+        <div className="w-full md:w-2/4 grid grid-cols-1 mx-auto gap-4 px-6">
           <div className="pb-2">
             <span className="uppercase text-sm text-gray-600 font-bold">
               Enquiry *
@@ -180,15 +183,18 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="WhyLove w-full md:px-8 py-16 container-full  bg-[linear-gradient(61deg,#0D1A2A_0%,#0F253C_66%,#17374E_100%)]">
+      <section className="WhyLove w-full md:px-8 py-4 container-full  bg-[linear-gradient(61deg,#0D1A2A_0%,#0F253C_66%,#17374E_100%)]">
         <div className="w-7/8 mx-auto">
-          <div className="box-content  pt-8 py-8 px-2 md:px-4">
-            <h2 className="md:text-3xl/tight text-4xl/tight font-bold text-center tracking-widest text-white">
-               Freeze Logistic — B2B Cold Chain Solutions
+          <div className="box-content  pt-8 py-8 md:px-4">
+            <h2 className="md:text-4xl/tight text-4xl/tight font-bold text-center tracking-widest text-white">
+               Freeze Logistic{" "}
+              <div className="bg-[linear-gradient(90deg,#4267D7_32%,#3ACDFF_100%)] bg-clip-text text-transparent inline-block">
+                — B2B Cold Chain Solutions
+              </div>
             </h2>
           </div>
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 w-full py-2 px-2 md:px-16 mx-auto pb-8 md:pb-16 text-white">
-            <div className="w-[48%] md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
+            <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
                 <p className="py-2 px-1 md:text-xl text-xs">
                   Domestic distribution network with 50+ hub locations
@@ -196,7 +202,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-[48%] md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
+            <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
                 <p className="py-2 px-1 md:text-xl text-xs">
                   Comprehensive dashboard for shipment monitoring
@@ -204,29 +210,29 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="w-[48%] md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
+            <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
                 <p className="py-2 px-1 md:text-xl text-xs">
                   Experienced operations{" "}
-                  <span className="block">team excellent</span>
+                  <span className="md:block">team excellent</span>
                 </p>
               </div>
             </div>
 
-            <div className="w-[48%] md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
+            <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
                 <p className="py-2 px-1 md:text-xl text-xs">
                   Dedicated Support for every
-                  <span className="block">Freeze Logistic customer</span>
+                  <span className="md:block">Freeze Logistic customer</span>
                 </p>
               </div>
             </div>
 
-            <div className="w-[48%] md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
+            <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
                 <p className="py-2 px-1 md:text-xl text-xs">
                   No Credit
-                  <span className="block">Card Required</span>
+                  <span className="md:block">Card Required</span>
                 </p>
               </div>
             </div>

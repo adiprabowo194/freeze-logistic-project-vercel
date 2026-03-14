@@ -4,17 +4,11 @@ import Link from "next/link";
 
 function Logo() {
   return (
-    <div className=" items-center  relative z-60 w-full md:w-1/3 md:justify-start justify-center">
-      <Link href="/" className="flex gap-4">
-        <i
-          className={`ri-snowflake-line text-3xl rounded-xl transition-colors duration-300 text-blue-600
-       `}
-        ></i>
+    <div className="flex items-center justify-center md:justify-start relative z-60 w-full md:w-1/3">
+      <Link href="/" className="flex items-center gap-4">
+        <i className="ri-snowflake-line text-3xl rounded-xl text-blue-600 transition-colors duration-300"></i>
 
-        <h1
-          className={`md:text-2xl text-base font-bold transition-colors duration-300 text-[#0F253C]
-        `}
-        >
+        <h1 className="md:text-2xl text-base font-bold text-[#0F253C] transition-colors duration-300">
           Freeze Logistics
         </h1>
       </Link>
