@@ -12,10 +12,20 @@
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.2.0",
+    "@upstash/redis": "^1.37.0",
+    "axios": "^1.13.6",
+    "mysql2": "^3.20.0",
     "next": "16.1.6",
+    "pg": "^8.20.0",
+    "pg-hstore": "^2.3.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "remixicon": "^4.9.1"
+    "react-hot-toast": "^2.6.0",
+    "react-select": "^5.10.2",
+    "remixicon": "^4.9.1",
+    "resend": "^6.9.3",
+    "sequelize": "^6.37.8",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

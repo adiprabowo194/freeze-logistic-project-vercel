@@ -1,23 +1,39 @@
+"use client";
 import Image from "next/image";
 import DataImage from "@/public/assets/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBusinessTime,
-  faClock,
-  faDollar,
-  faPeopleGroup,
-  faSearch,
-  faTimes,
-  faTruck,
-  faTruckFast,
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeadset, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 import Footer from "@/components/Footer";
-import { faDollarSign } from "@fortawesome/free-solid-svg-icons/faDollarSign";
-import { faPeopleCarryBox } from "@fortawesome/free-solid-svg-icons/faPeopleCarryBox";
+import { useContactForm } from "@/hooks/useContactForm";
+import SubmitButton from "@/components/SubmitButton";
+import { Toaster } from "react-hot-toast";
 
-export default function Home() {
+import dynamic from "next/dynamic";
+import { useState } from "react";
+
+const AsyncSelect = dynamic(() => import("react-select/async"), {
+  ssr: false,
+  loading: () => <div className="text-sm text-gray-400">Loading...</div>,
+});
+type OptionType = {
+  value: number;
+  label: string;
+};
+
+export default function Page() {
+  const [selectedSuburb, setSelectedSuburb] = useState<OptionType | null>(null);
+
+  const { state, formAction, formRef } = useContactForm(() => {
+    setSelectedSuburb(null); // ✅ reset setelah success
+  });
+
+  const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
+    const res = await fetch(`/api/coverage-areas?q=${inputValue}`);
+    return await res.json();
+  };
+
   return (
     <div className="py-8">
       <section className="flex md:flex-row flex-col w-full md:h-[480px] h-[520px] container-full mx-auto">
@@ -26,9 +42,14 @@ export default function Home() {
             <h1 className="md:text-7xl/tight text-3xl/tight font-bold text-white pt-10 md:text-left text-center">
               Why Freeze Logistics?
             </h1>
-            <p className="md:text-xl text-xs text-white py-4 md:text-left text-center">
-              Experience premium chilled and frozen product distribution with
-              the highest quality standards.
+            <p className="md:text-base text-sm text-center md:text-left text-white py-4 mx-auto tracking-wider">
+              Experience premium chilled and frozen product distribution{" "}
+              <span
+                className="block
+              "
+              >
+                with the highest quality standards.
+              </span>
             </p>
           </div>
         </div>
@@ -49,7 +70,7 @@ export default function Home() {
             </div>
           </h1>
           <div className="py-8 w-3/4 mx-auto">
-            <p className="md:text-base/tight text-sm text-center mx-auto">
+            <p className="md:text-base/tight text-sm text-center mx-auto tracking-wider">
               Freeze Logistics provides nationwide freight services for all your
               refrigerated goods with ease.
             </p>
@@ -98,90 +119,160 @@ export default function Home() {
             </div>
           </h1>
           <div className="py-8 w-full mx-auto">
-            <p className="md:text-base/tight text-sm text-center mx-auto">
+            <p className="md:text-base/tight text-sm text-center mx-auto tracking-wider">
               Complete the form below and our team will get in touch with you
               shortly.
             </p>
           </div>
         </div>
-        <div className="w-full md:w-2/4 grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 px-6">
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Company Name
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="PT. Example Corp"
-            />
+        <Toaster position="top-right" />
+        <form ref={formRef} action={formAction} className="w-full">
+          <div className="w-full md:w-2/4 grid grid-cols-1 md:grid-cols-2 mx-auto gap-4 px-6">
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Company Name
+              </span>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="PT. Example Corp"
+                name="company_name"
+              />
+              {state?.errors?.company_name && (
+                <p className="text-red-500">{state.errors.company_name}</p>
+              )}
+            </div>
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Contact Name *
+              </span>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="Full Name"
+                name="contact_name"
+              />
+              {state?.errors?.contact_name && (
+                <p className="text-red-500">{state.errors.contact_name}</p>
+              )}
+            </div>
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Email *
+              </span>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="email@company.com"
+                name="email"
+              />
+              {state?.errors?.email && (
+                <p className="text-red-500">{state.errors.email}</p>
+              )}
+            </div>
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Contact Number *
+              </span>
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
+                type="text"
+                placeholder="+21 435 464"
+                name="contact_number"
+              />
+              {state?.errors?.contact_number && (
+                <p className="text-red-500">{state.errors.contact_number}</p>
+              )}
+            </div>
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Suburb *
+              </span>
+
+              <div className="mt-2">
+                <AsyncSelect<OptionType, false>
+                  cacheOptions
+                  loadOptions={loadOptions}
+                  defaultOptions
+                  value={selectedSuburb}
+                  onChange={(val) => setSelectedSuburb(val)}
+                  placeholder="Search suburb or state..."
+                  classNamePrefix="react-select"
+                  styles={{
+                    control: (base, stateSelect) => ({
+                      ...base,
+                      backgroundColor: "#f3f4f6",
+                      borderRadius: "1rem",
+                      padding: "6px",
+                      border: state?.errors?.suburb
+                        ? "2px solid #ef4444" // 🔴 error
+                        : stateSelect.isFocused
+                          ? "2px solid #3b82f6"
+                          : "none",
+                      boxShadow: "none",
+                    }),
+                    menu: (base) => ({
+                      ...base,
+                      borderRadius: "1rem",
+                      overflow: "hidden",
+                    }),
+                  }}
+                />
+              </div>
+
+              {/* ✅ WAJIB: kirim ke backend */}
+              <input
+                type="hidden"
+                name="suburb"
+                value={selectedSuburb?.label || ""}
+              />
+
+              {/* ✅ error ambil index [0] */}
+              {state?.errors?.suburb && (
+                <p className="text-red-500 mt-1 text-sm">
+                  {state.errors.suburb[0]}
+                </p>
+              )}
+            </div>
+
+            <div className="pb-4">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Street Address *
+              </span>
+
+              <input
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                type="text"
+                placeholder="Full Street Address"
+                name="street_address"
+              />
+
+              {state?.errors?.street_address && (
+                <p className="text-red-500 mt-1">
+                  {state.errors.street_address}
+                </p>
+              )}
+            </div>
           </div>
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Contact Name *
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Full Name"
-            />
+          <div className="w-full md:w-2/4 grid grid-cols-1 mx-auto gap-4 px-6">
+            <div className="pb-2">
+              <span className="uppercase text-sm text-gray-600 font-bold">
+                Enquiry *
+              </span>
+              <textarea
+                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
+                placeholder="Your Question"
+                name="enquiry"
+              />
+              {state?.errors?.enquiry && (
+                <p className="text-red-500">{state.errors.enquiry}</p>
+              )}
+            </div>
+            <div className="pb-4">
+              <SubmitButton />
+            </div>
           </div>
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Email *
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="email@company.com"
-            />
-          </div>
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Contact Number *
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="+21 435 464"
-            />
-          </div>
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              suburb *
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Northern Territory"
-            />
-          </div>
-          <div className="pb-4">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Street Address *
-            </span>
-            <input
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
-              type="text"
-              placeholder="Full Street Address"
-            />
-          </div>
-        </div>
-        <div className="w-full md:w-2/4 grid grid-cols-1 mx-auto gap-4 px-6">
-          <div className="pb-2">
-            <span className="uppercase text-sm text-gray-600 font-bold">
-              Enquiry *
-            </span>
-            <textarea
-              className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-2xl focus:outline-none focus:shadow-outline"
-              placeholder="Your Question"
-            />
-          </div>
-          <div className="pb-4">
-            <button className="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
-              Send Message
-            </button>
-          </div>
-        </div>
+        </form>
       </section>
       <section className="WhyLove w-full md:px-8 py-4 container-full  bg-[linear-gradient(61deg,#0D1A2A_0%,#0F253C_66%,#17374E_100%)]">
         <div className="w-7/8 mx-auto">
@@ -196,7 +287,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 w-full py-2 px-2 md:px-16 mx-auto pb-8 md:pb-16 text-white">
             <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
-                <p className="py-2 px-1 md:text-xl text-xs">
+                <p className="py-2 px-1 md:text-lg text-xs">
                   Domestic distribution network with 50+ hub locations
                 </p>
               </div>
@@ -204,7 +295,7 @@ export default function Home() {
 
             <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
-                <p className="py-2 px-1 md:text-xl text-xs">
+                <p className="py-2 px-1 md:text-lg text-xs">
                   Comprehensive dashboard for shipment monitoring
                 </p>
               </div>
@@ -212,7 +303,7 @@ export default function Home() {
 
             <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
-                <p className="py-2 px-1 md:text-xl text-xs">
+                <p className="py-2 px-1 md:text-lg text-xs">
                   Experienced operations{" "}
                   <span className="md:block">team excellent</span>
                 </p>
@@ -221,7 +312,7 @@ export default function Home() {
 
             <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
-                <p className="py-2 px-1 md:text-xl text-xs">
+                <p className="py-2 px-1 md:text-lg text-xs">
                   Dedicated Support for every
                   <span className="md:block">Freeze Logistic customer</span>
                 </p>
@@ -230,7 +321,7 @@ export default function Home() {
 
             <div className="w-full md:w-[30%] border border-gray-200 rounded-2xl hover:bg-[#4267D7] group transition-colors duration-300 hover:shadow-lg">
               <div className="flex flex-col text-center items-center py-4">
-                <p className="py-2 px-1 md:text-xl text-xs">
+                <p className="py-2 px-1 md:text-lg text-xs">
                   No Credit
                   <span className="md:block">Card Required</span>
                 </p>
