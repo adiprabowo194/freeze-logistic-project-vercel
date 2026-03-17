@@ -1,9 +1,4 @@
 "use client";
-import Image from "next/image";
-import DataImage from "@/public/assets/data";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 import Footer from "@/components/Footer";
 import { useContactForm } from "@/hooks/useContactForm";
@@ -17,6 +12,7 @@ const AsyncSelect = dynamic(() => import("react-select/async"), {
   ssr: false,
   loading: () => <div className="text-sm text-gray-400">Loading...</div>,
 });
+
 type OptionType = {
   value: number;
   label: string;
@@ -26,12 +22,13 @@ export default function Page() {
   const [selectedSuburb, setSelectedSuburb] = useState<OptionType | null>(null);
 
   const { state, formAction, formRef } = useContactForm(() => {
-    setSelectedSuburb(null); // ✅ reset setelah success
+    setSelectedSuburb(null);
   });
 
   const loadOptions = async (inputValue: string): Promise<OptionType[]> => {
     const res = await fetch(`/api/coverage-areas?q=${inputValue}`);
-    return await res.json();
+    const data = await res.json();
+    return data;
   };
 
   return (
@@ -184,18 +181,19 @@ export default function Page() {
                 <p className="text-red-500">{state.errors.contact_number}</p>
               )}
             </div>
+            {/* SUBURB */}
             <div className="pb-4">
               <span className="uppercase text-sm text-gray-600 font-bold">
                 Suburb *
               </span>
 
               <div className="mt-2">
-                <AsyncSelect<OptionType, false>
+                <AsyncSelect
                   cacheOptions
                   loadOptions={loadOptions}
                   defaultOptions
                   value={selectedSuburb}
-                  onChange={(val) => setSelectedSuburb(val)}
+                  onChange={(val) => setSelectedSuburb(val as OptionType)}
                   placeholder="Search suburb or state..."
                   classNamePrefix="react-select"
                   styles={{
@@ -205,7 +203,7 @@ export default function Page() {
                       borderRadius: "1rem",
                       padding: "6px",
                       border: state?.errors?.suburb
-                        ? "2px solid #ef4444" // 🔴 error
+                        ? "2px solid #ef4444"
                         : stateSelect.isFocused
                           ? "2px solid #3b82f6"
                           : "none",
@@ -220,14 +218,13 @@ export default function Page() {
                 />
               </div>
 
-              {/* ✅ WAJIB: kirim ke backend */}
+              {/* hidden input */}
               <input
                 type="hidden"
                 name="suburb"
                 value={selectedSuburb?.label || ""}
               />
 
-              {/* ✅ error ambil index [0] */}
               {state?.errors?.suburb && (
                 <p className="text-red-500 mt-1 text-sm">
                   {state.errors.suburb[0]}

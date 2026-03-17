@@ -7,12 +7,12 @@ import toast from "react-hot-toast";
 import { sendEmail } from "@/app/actions/sendEmail";
 
 const initialState = {
-  success: null,
+  success: false,
   message: "",
-  timestamp: null,
+  timestamp: 0,
 };
 
-export function useContactForm(p0: () => void) {
+export function useContactForm(onSuccess: () => void) {
   const [state, formAction] = useActionState(sendEmail, initialState);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -22,10 +22,11 @@ export function useContactForm(p0: () => void) {
     if (state.success) {
       toast.success(state.message || "Message sent!");
       formRef.current?.reset();
+      onSuccess(); // ✅ biar reset AsyncSelect juga
     } else {
       toast.error(state.message || "Failed to send message");
     }
-  }, [state?.timestamp]); // 🔥 hanya trigger saat timestamp berubah
+  }, [state.timestamp]);
 
   return {
     state,
