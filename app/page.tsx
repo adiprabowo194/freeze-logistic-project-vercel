@@ -46,12 +46,24 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-button flex flex-row  md:gap-8 gap-2 py-4 justify-center">
-          <button className="bg-blue-500 px-6 py-2 rounded-2xl md:w-60 w-40 text-white md:text-base text-xs hover:bg-[#0F253C]">
-            Create Free Login
-          </button>
-          <button className="border border-gray-950 px-6 py-2 rounded-2xl md:w-40 w-30 md:text-base text-xs hover:bg-[#0F253C] hover:text-white">
-            Login
-          </button>
+          <Link
+            href="https://app.freezelogistics.com.au/register"
+            target="_blank"
+            className="flex items-center gap-4"
+          >
+            <button className="bg-blue-500 px-6 py-2 rounded-2xl md:w-60 w-40 text-white md:text-base text-xs hover:bg-[#0F253C]">
+              Create Free Login
+            </button>
+          </Link>
+          <Link
+            href="https://app.freezelogistics.com.au"
+            target="_blank"
+            className="flex items-center gap-4"
+          >
+            <button className="border border-gray-950 px-6 py-2 rounded-2xl md:w-40 w-30 md:text-base text-xs hover:bg-[#0F253C] hover:text-white">
+              Login
+            </button>
+          </Link>
         </div>
         <div className="hero-image py-0 md:max-w-5xl w-full  relative min-h-60 mx-auto">
           <p
@@ -339,13 +351,18 @@ export default function Home() {
                   money on cold freight
                 </p>
                 <div className="hero-button flex flex-row  md:gap-8 gap-2 py-4 justify-center">
-                  <Link
+                  {/* <Link
                     href="https://app.freezelogistics.com.au"
                     target="_blank"
                     className="flex items-center gap-4"
                   >
                     <button className="bg-blue-500 px-6 py-2 rounded-2xl md:w-60 w-40 text-white md:text-base text-xs hover:bg-blue-400 hover:shadow-lg">
                       Create Free Login
+                    </button>
+                  </Link> */}
+                  <Link href="/get-started" className="flex items-center gap-4">
+                    <button className="bg-white px-6 py-2 rounded-2xl md:w-60 w-40  md:text-base text-xs text-[#0F253C] hover:bg-blue-500 hover:text-white">
+                      Get Started
                     </button>
                   </Link>
                 </div>

@@ -67,7 +67,7 @@ export default function Home() {
             <div className="flex items-center justify-between">
               <p>Sign up for your free account now.</p>
               <Link
-                href="https://app.freezelogistics.com.au"
+                href="https://app.freezelogistics.com.au/register"
                 target="_blank"
                 className="flex items-center gap-4"
               >
